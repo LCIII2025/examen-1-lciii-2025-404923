@@ -31,13 +31,29 @@ public class Ticket {
     }
 
     public double calcularPrecio() {
+        double importeFinal = 0;
+        double horasEstacionado = Math.ceil(calcularMinutos() / 60);
+        if (vehiculo.getTipo().equals(Vehiculo.Tipo.AUTO)) {
+            for (int i = 0; i <= (int)horasEstacionado; i++) {
+                importeFinal += 100;
+            }
+        } else if (vehiculo.getTipo().equals(Vehiculo.Tipo.SUV)) {
+            for (int i = 0; i <= calcularMinutos(); i+=60) {
+                importeFinal += 130;
+            }
+        } else if (vehiculo.getTipo().equals(Vehiculo.Tipo.PICKUP)) {
+            for (int i = 0; i <= calcularMinutos(); i+=60) {
+                importeFinal += 180;
+            }
+        }
+
+        return importeFinal;
+
         // TODO implementar el metodo para calcular el importe a abonar segun el tipo de vehiculo
         // AUTO -> 100, SUV -> 130, PICKUP -> 180
         // el importe es por hora redondeando el tiempo hacia arriba,
         // por ejemplo si estuvo 45 minutos se le tarifa por 60, si estuvo 80 minutos se le tarifa por 120 minutos, etc...
         // retornar el importe final
-
-        return 0;
     }
 
 }

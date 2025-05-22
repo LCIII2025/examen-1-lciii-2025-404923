@@ -5,6 +5,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Data
 public class Cliente {
     private final String dni;
@@ -18,14 +19,18 @@ public class Cliente {
     }
 
     public void agregarVehiculo(Vehiculo vehiculo) {
-        // TODO implementar la carga de vehiculos en el cliente
+        this.vehiculos.add(vehiculo);
 
+        // TODO implementar la carga de vehiculos en el cliente
     }
 
     public Vehiculo buscarVehiculoPorPatente(String patente) {
-        // TODO implementar la busqueda de un vehiculo segun su patente
-
-
+        for (Vehiculo v : vehiculos) {
+            if (v.getPatente().equals(patente)) {
+                return v;
+            }
+        }
         return null;
+        // TODO implementar la busqueda de un vehiculo segun su patente
     }
 }
